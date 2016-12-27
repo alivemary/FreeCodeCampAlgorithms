@@ -1,0 +1,21 @@
+/* 
+Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.
+
+For the purpose of this exercise, you should also capitalize connecting words like "the" and "of".
+*/
+
+
+function largestOfFour(arr) {
+  // You can do this!
+  var arrayOfLargest= [];
+  
+  for (var i = 0; i<arr.length; i++) {
+    var arr1 = arr[i];
+    var arr2 = arr1.sort(function(a, b) {
+  return a - b;
+  }).reverse();
+    arrayOfLargest.push(arr2[0]);
+    
+  }
+  return arrayOfLargest;
+}
