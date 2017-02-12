@@ -1,0 +1,5 @@
+var line;
+line = readline();
+var number = parseInt(line);
+var res = parseInt(number.toString(2).split('').reverse().join(''), 2);
+print(res);
