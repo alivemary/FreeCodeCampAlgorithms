@@ -1,0 +1,26 @@
+		var line;
+		line = readline();
+		var numberOfCases = parseInt(line);
+
+		for (var i=0; i<numberOfCases; i++) {
+			line = readline();
+			var numberOfNumbers = parseInt(line);
+			var phoneNumbers = [];
+			for (var j=0; j<numberOfNumbers; j++) {
+				line = readline();
+				phoneNumbers.push(line);
+			}
+			var res = 'YES';
+			//sort array alphabethicaly
+			phoneNumbers = phoneNumbers.sort (function(a, b) {
+				return a > b;
+			});
+			while (phoneNumbers.length>1) {
+				if (phoneNumbers[1].startsWith(phoneNumbers[0])) {
+					res='NO';
+					break;
+				}
+				phoneNumbers.shift();
+			}
+			print(res);
+		}		
