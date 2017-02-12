@@ -1,0 +1,84 @@
+			function sieve () {
+			var prime = [];
+			var numbers = [];
+			for (var i=2; i<=9999; i++) {
+				numbers.push(i);
+			}
+			while (numbers.length>0) {
+				prime.push(numbers[0]);
+				numbers=numbers.filter(function(e,i,self) {return e%self[0]});
+			}
+			return prime.filter(function(e) { return e>=1000});
+		}
+		
+		function diffByOneDigit (n1, n2) {
+			var a1 = n1.toString().split('');
+			var a2 = n2.toString().split('');
+			var count = 0;
+			for (var i=0; i<a1.length; i++) {
+				if (a1[i] != a2[i]) count++;
+			} 
+			if (count === 1) return true; 
+			else return false;
+		}
+
+		function makeGraph (arr) {
+			var map = arr.map(function(e) {
+				return {number: e, way: [], dist: 10000}
+			});
+			for (var j=0; j<arr.length; j++) {
+				for (var k=j+1; k<arr.length; k++)
+					if (diffByOneDigit(map[j].number, map[k].number)) {
+						map[j].way.push(map[k]);
+						map[k].way.push(map[j]);
+					}
+			}
+			return map;
+		}
+
+		function findShortestWay (graph, n1, n2) {
+			var current = 0, currentIndex = -1, unvisited = [];
+
+			function addDist (arr, dist) {
+				arr.forEach (function(e) {
+					if (e.dist===10000) {
+						e.dist = dist+1;
+						unvisited.push(e);
+					}
+				});
+
+				
+			}
+
+			graph.forEach(function(e) {
+				e.dist = 10000;			
+			});
+
+			currentIndex = primes.indexOf(n1);
+			graph[currentIndex].dist = 0;
+			unvisited.push(graph[currentIndex]);
+			
+			while (unvisited.length) {
+				current = unvisited[0];
+				addDist(current.way, current.dist);
+				unvisited.shift();
+				if (current.number === n2) return current.dist;
+			}
+			return 0;
+		}
+
+		var primes = sieve();
+		var arr = makeGraph(primes);
+		var line;
+		line = readline();
+		var q = parseInt(line);
+		
+		for (var i=0; i<q; i++) {
+			line = readline();
+			var nums = line.split(' ');
+    		var a = parseInt(nums[0]);
+    		var b = parseInt(nums[1]);
+    		var res = findShortestWay(arr, a, b);
+    		print(res);
+    	}
+  
