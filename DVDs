@@ -1,0 +1,19 @@
+var line;
+line = readline();
+var numberOfInput = parseInt(line);
+
+for (var i=0; i<numberOfInput; i++) {
+	line = readline();
+	var numberOfDvds = parseInt(line);
+	line = readline();
+	var dvdsNumbers = line.split(' ');
+	var next = 1;
+
+	dvdsNumbers.forEach (function(e) {
+		if (e == next) next++;
+	});
+    	
+	result = dvdsNumbers.length - (next - 1);
+
+	print(result);
+}
