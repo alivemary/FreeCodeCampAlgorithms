@@ -1,0 +1,16 @@
+var line;
+line = readline();
+var numberOfPress = parseInt(line);
+
+		function fib(n) {
+    		SQRT5 = Math.sqrt(5);
+    		PHI = (SQRT5 + 1) / 2;
+    		return Math.floor(Math.pow(PHI, n) / SQRT5 + 0.5);
+		}
+
+		var a=fib(numberOfPress-1);
+		var b=fib(numberOfPress);
+
+		var res = a+' '+b;
+
+print(res);
